@@ -9,7 +9,6 @@ class MarketingAnalyst:
         genai.configure(api_key=api_key)
         
         self.model_name = self._get_best_available_model()
-        print(f"🚀 AI Model Selected: {self.model_name}")
         self.model = genai.GenerativeModel(self.model_name)
         
         self.system_instruction = """
@@ -34,18 +33,35 @@ class MarketingAnalyst:
         """
 
     def _get_best_available_model(self):
+        preferred = [
+            "gemini-2.5-flash",
+            "gemini-2.0-flash",
+            "gemini-1.5-flash",
+            "gemini-2.5-pro",
+            "gemini-1.5-pro",
+        ]
         try:
-            available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-            
-            for m in available_models:
-                if 'flash' in m.lower(): return m
-            
-            for m in available_models:
-                if 'pro' in m.lower() and 'vision' not in m.lower(): return m
-            
-            return available_models[0] if available_models else 'gemini-pro'
-        except:
-            return 'gemini-pro'
+            available = [
+                m.name for m in genai.list_models()
+                if "generateContent" in m.supported_generation_methods
+            ]
+            available_short = {n.split("/")[-1] for n in available}
+            for p in preferred:
+                if p in available_short:
+                    return p
+            for n in available:
+                short = n.split("/")[-1].lower()
+                if "flash" in short and "vision" not in short:
+                    return n.split("/")[-1]
+            for n in available:
+                short = n.split("/")[-1].lower()
+                if "pro" in short and "vision" not in short:
+                    return n.split("/")[-1]
+            if available:
+                return available[0].split("/")[-1]
+        except Exception:
+            pass
+        return "gemini-2.5-flash"
 
     def _preprocess_data(self, df: pd.DataFrame) -> pd.DataFrame:
         df.columns = [str(c).strip().lower().replace(" ", "_").replace(r"[().]", "").replace("/", "_per_") for c in df.columns]

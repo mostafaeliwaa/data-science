@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import os
 import re
-from app.features.recommendation.common.session import generate_session_id
-from app.features.recommendation.llm.explainers import (
+from recommendation.common.session import generate_session_id
+from recommendation.llm.explainers import (
     explain_prediction_results
 )
 

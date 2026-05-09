@@ -1,16 +1,16 @@
 import pandas as pd
-from app.features.recommendation.common.session import generate_session_id
-from app.features.recommendation.in_flight.features import enrich_inflight_features
-from app.features.recommendation.common.normalization import normalize_inflight
-from app.features.recommendation.common.scoring import (
+from recommendation.common.session import generate_session_id
+from recommendation.in_flight.features import enrich_inflight_features
+from recommendation.common.normalization import normalize_inflight
+from recommendation.common.scoring import (
     performance_score, pace_score, potential_score
 )
-from app.features.recommendation.in_flight.decision import make_decision
-from app.features.recommendation.in_flight.pca_weights import learn_inflight_pca_weights
-from app.features.recommendation.llm.explainers import (
+from recommendation.in_flight.decision import make_decision
+from recommendation.in_flight.pca_weights import learn_inflight_pca_weights
+from recommendation.llm.explainers import (
     explain_inflight_summary_from_stats
 )
-from app.features.recommendation.in_flight.ml.predict import predict_inflight_kpis
+from recommendation.in_flight.ml.predict import predict_inflight_kpis
 
 
 def run_inflight_from_csv(df: pd.DataFrame,explain_inflight_summary=False):

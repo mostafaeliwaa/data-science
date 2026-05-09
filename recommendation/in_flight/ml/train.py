@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from app.features.recommendation.in_flight.features import build_inflight_training_features
+from recommendation.in_flight.features import build_inflight_training_features
 
 if __name__ == "__main__":
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print("RMSE:", round(conv_rmse, 3))
     print("Conversion R2:", round(r2_conv, 3))
 
-    BASE_PATH = "app/features/recommendation/in_flight/ml/"
+    BASE_PATH = "recommendation/in_flight/ml/"
 
     joblib.dump(roi_model, BASE_PATH + "roi_model.pkl")
     joblib.dump(conv_model, BASE_PATH + "conversion_model.pkl")

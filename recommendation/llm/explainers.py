@@ -1,5 +1,5 @@
-from app.features.recommendation.llm.client import call_llm
-from app.features.recommendation.llm.prompts import failed_summary_prompt,failure_driver_prompt, inflight_summary_prompt, pre_campaign_prediction_prompt
+from recommendation.llm.client import call_llm
+from recommendation.llm.prompts import failed_summary_prompt, failure_driver_prompt, inflight_summary_prompt, pre_campaign_prediction_prompt
 
 def explain_failed_summary_from_stats(stats: dict) -> str:
     if stats["count"] == 0:

@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 from google.api_core.exceptions import ResourceExhausted
-from app.features.recommendation.llm.utils import normalize_prompt
+from recommendation.llm.utils import normalize_prompt
 from groq import Groq
 load_dotenv()
 

@@ -1,14 +1,14 @@
 import pandas as pd
 
-from app.features.recommendation.common.data_prep import prepare_data
-from app.features.recommendation.common.normalization import normalize
-from app.features.recommendation.common.scoring import compute_success_score
-from app.features.recommendation.post_campaign.pca_weights import compute_pca_weights
-from app.features.recommendation.post_campaign.classifier import classify
-from app.features.recommendation.llm.explainers import  explain_failed_summary_from_stats
-from app.features.recommendation.common.session import generate_session_id
-from app.features.recommendation.post_campaign.driver_analysis import compute_failure_drivers
-from app.features.recommendation.llm.explainers import explain_failure_drivers
+from recommendation.common.data_prep import prepare_data
+from recommendation.common.normalization import normalize
+from recommendation.common.scoring import compute_success_score
+from recommendation.post_campaign.pca_weights import compute_pca_weights
+from recommendation.post_campaign.classifier import classify
+from recommendation.llm.explainers import explain_failed_summary_from_stats
+from recommendation.common.session import generate_session_id
+from recommendation.post_campaign.driver_analysis import compute_failure_drivers
+from recommendation.llm.explainers import explain_failure_drivers
 
 
 SUCCESS_FEATURES = [
